@@ -181,7 +181,7 @@ Camera:
   far clip plane: 25
   field of view: 60
   orthographic: 1
-  orthographic size: 300
+  orthographic size: 150
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 400, y: 20, z: 250}
+  m_LocalPosition: {x: 200, y: 20, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -406,13 +406,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbe3e69ae8e450b821d70157faac84e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gridXValue: 800
-  _gridYValue: 500
+  _gridXValue: 450
+  _gridYValue: 200
   _cellSize: 1
   _startPosition: {x: 0, y: 0, z: 0}
   _generationMethod: {fileID: 11400000, guid: d996423656bdbfb4fb7b34db1a1c2cfe, type: 2}
   _drawDebug: 0
-  _seed: 157
+  _seed: 666
   _stepDelay: 1
 --- !u!4 &1922166660
 Transform:

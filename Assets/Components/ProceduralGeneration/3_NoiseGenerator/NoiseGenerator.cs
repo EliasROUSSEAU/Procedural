@@ -9,23 +9,28 @@ using VTools.ScriptableObjectDatabase;
 [CreateAssetMenu(menuName = "Procedural Generation Method/Noise Generation")]
 public class NoiseGenerator : ProceduralGenerationMethod
 {
+    [Header("Noise Settings")]
     public FastNoiseLite.NoiseType noiseType = FastNoiseLite.NoiseType.Perlin;
     [Range(0.01f, 0.1f)] public float frequency = 1f;
     [Range(0.5f, 1.5f)] public float amplitude = 1f;
 
+    [Header("Fractal Settings")]
     public FastNoiseLite.FractalType fractalType = FastNoiseLite.FractalType.FBm;
     [Range(1, 5)] public int octaves = 3;
     [Range(1f, 3f)] public float lacunarity = 2f;
     [Range(0.5f, 1f)] public float persistence = 0.5f;
 
+    [Header("Terrain Height Thresholds")]
     [Range(-1f, 1f)] public float waterHeight = 0.2f;
     [Range(-1f, 1f)] public float sandHeight = 0.3f;
     [Range(-1f, 1f)] public float grassHeight = 0.6f;
     [Range(-1f, 1f)] public float rockHeight = 1f;
 
+    public int seed = 1337;
+
     protected override async UniTask ApplyGeneration(CancellationToken cancellationToken)
     {
-        var noise = new FastNoiseLite();
+        var noise = new FastNoiseLite(seed);
 
         noise.SetNoiseType(noiseType);
         noise.SetFrequency(frequency);
