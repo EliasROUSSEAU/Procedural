@@ -24,4 +24,33 @@ MonoBehaviour:
   sandHeight: 0.2
   grassHeight: 0.5
   rockHeight: 1
+  enableTrees: 1
+  vegetationFrequency: 0.02
+  treeThreshold: 0.2
+  treeDensity: 0.8
+  treeMinDistance: 2
+  treeTemplateNames:
+  - Tree
+  verboseTreeDebug: 0
+  enableBranches: 1
+  branchFrequency: 0.02
+  branchThreshold: 0.15
+  branchDensity: 0.069
+  branchMinDistance: 1
+  branchMaxWaterDistance: 2
+  branchTemplateNames:
+  - Branch
+  verboseBranchDebug: 0
+  enableGallais: 1
+  gallaiFrequency: 0.04
+  gallaiThreshold: 0.1
+  gallaiDensity: 0.266
+  gallaiMinDistance: 0
+  gallaiMaxDistance: 2
+  gallaiMinDistanceFromWater: 1
+  gallaiMaxDistanceFromWater: 4
+  gallaiSpawnAnywhere: 0
+  gallaiTemplateNames:
+  - Gallai
+  verboseGallaiDebug: 0
   seed: 666
