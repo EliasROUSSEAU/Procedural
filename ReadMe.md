@@ -12,7 +12,7 @@
 
 - [Mise en place et Initialisation](#mise-en-place-et-initialisation)
 - [SimpleRoomPlacement](#simpleroomplacement)
-- [BSP2](#bsp2)
+- [BSP](#bsp)
 - [CellularAutomata](#cellularautomata)
 - [NoiseGenerator](#noisegenerator)
 
@@ -20,12 +20,12 @@
 
 ### Mise en place et Initialisation
 
-Important sinon le projet ne fonctionnera pas!  
-Utilisation de **`UniTask`**:  
---> Guide d'installation ([**Lien UniTask OpenUPM**](https://openupm.com/packages/com.cysharp.unitask/#modal-manualinstallation))  
+Important sinon le projet ne fonctionnera pas !  
+Utilisation de **`UniTask`** :  
+-> Guide d'installation : [**Lien UniTask OpenUPM**](https://openupm.com/packages/com.cysharp.unitask/#modal-manualinstallation)  
 
-**1ère Etape**  
-Sur Unity:  
+**1ère Étape**  
+Sur Unity :  
 - Onglet → Edit  
 - Project Setting  
 - Package Manager  
@@ -36,21 +36,36 @@ Sur Unity:
 
 <img src="Prj4_Jours1/Documentation/SetupUniTask_Unity_FullOnglet.png" width="50%">
 
-**2ème Etapes**  
-Une fois validé, fermer la fenêtre puis:  
-- Onglet: Window  
+---
+
+**2ème Étape**  
+Une fois appliqué, fermer la fenêtre et faire :  
+- Onglet → Window  
 - Package Manager  
-- [+]  
-- Name: `com.cysharp.unitask` | version: `2.5.10`  
+- +  
+- Name : `com.cysharp.unitask` | version : `2.5.10`  
 
 <img src="Prj4_Jours1/Documentation/Unity_Package_Plus_Name.png" width="25%">
 <img src="Prj4_Jours1/Documentation/Unity_Package_Plus_Name_InputField.png" width="25%">
 
-**3ème Etapes:** (Facultatif, seulement si tu souhaite recommencer avec une base basique)  
-Télécharger le package découverte de l'intervenant:  
+---
+
+**3ème Étape** *(Non obligatoire, seulement pour recommencer avec une base basique)*  
+Télécharger le package découverte de UTKOWSKI Yona (intervenant) :  
 [**LienDriveCampus**](https://drive.google.com/drive/folders/1QxmWzBSGsTq-miRODwUX_zA8UEcFaUDW)  
-Nom du package: `ArchitectureProceduralGeneration.unitypackage`  
-Glisser le package dans la Hierarchy Unity, puis importer le tout.
+Nom du package : `ArchitectureProceduralGeneration.unitypackage`  
+Glisser le package dans la **Hierarchy** Unity, puis importer le tout.
+
+---
+
+**FIN INITIALISATION**
+
+Maintenant le projet contient les éléments de génération procédural :  
+- SimpleRoomPlacement  
+- BSP  
+- Cellular Automata  
+- Noise
+
 
 ---
 
@@ -67,10 +82,10 @@ Ici, le projet contient plus d'éléments que le simple package de l'étape 3:
 ### Informations Utiles
 
 **SEED**:  
-- On utilise RandomService() avec la Seed pour gérer l'aléatoire.  
-- L'utilisation d'une Seed permet d'avoir du pseudo-aléatoire.  
-- En changeant la Seed, on change le résultat. Si on réutilise la même Seed, on retrouvera le même résultat.  
-- Utiliser toujours la même méthode de génération pour obtenir les mêmes décors et générations.
+- Utilisation de `RandomService()` avec la Seed pour contrôler l'aléatoire. 
+- L'utilisation d'une Seed permet d'avoir du un résultat pseudo-aléatoire (par exemple Minecraft).  
+- Le changement de la Seed entrainera un résultat différent. L'utilisation d'une même Seed, on retrouvera le même résultat.  
+- Toujours utilisé la même méthode de génération pour obtenir les mêmes générations.
 
 ---
 
@@ -94,9 +109,9 @@ Glisser/déposer dans l'inspector de `ProceduralGridGenerator` → `GenerationMe
 
 ---
 
-## BSP2
+## BSP
 
-On utilise `ProceduralGridGenerator` avec le scriptableObject `New BSP_Correction`.  
+Script utilisé `ProceduralGridGenerator` avec ScriptableObject `BSP2`.  
 Libre à vous de tester les autres BSP.  
 
 Rappel sur `Binary Tree` :  
@@ -115,30 +130,51 @@ Rappel sur `Binary Tree` :
 
 ## CellularAutomata
 
-Utilisation de `ProceduralGridGenerator` avec `New CellularAutomata_Correction`.  
-Peu de paramètres :  
-- `MaxSteps`  
-- `GroundDensity`  
-- `minGroundNeighbourCount`
+Scripts utilisé: `ProceduralGridGenerator` avec ScriptableObject `CellularAutomata`.  
+### Paramètres du ScriptableObject
+
+**Général**  
+- `MaxSteps` : Nombre maximum d’itérations du Cellular Automata.  
+
+**Initialisation**  
+- `_noiseDensity` : Pourcentage de Cell Grass au départ.  
+
+**Règles de transformation**  
+- `_grassThreshold` : Nombre minimum de voisin Grass pour que une Cell devien Grass (0 → 8). 
 
 <img src="Prj4_Jours1/Documentation/Cell_Auto/CellularAutomaton.png" width="20%">  
 Exemple : la case rouge devient "Grass" si elle a ≥5 voisins "Grass".
 
 **Étapes:**  
-1. Remplir la grille aléatoirement Grass/Water.  
-2. Créer une nouvelle grille selon `minGroundNeighbourCount`.  
-3. Mettre à jour les cellules si elles changent.  
-4. Répéter jusqu'à `MaxSteps`.
+1. Remplir la grille procéduralement avec les Cell Grass et Water selon `_noiseDensity`.  
+2. Création d'une grille selon `minGroundNeighbourCount`.  
+3. Remplacement des Cell si condition remplie.  
+4. Répéter le procèder jusqu' `MaxSteps`.
 
 ---
 
 ## NoiseGenerator
 
-Utilisation de `ProceduralGridGenerator` avec `New Test_Noise_Perso`.  
-Paramètres principaux :  
-- `noiseType`, `frequency`, `amplitude`  
-- `fractalType`, `octaves`, `lacunarity`, `persistence`  
-- `waterHeight`, `sandHeight`, `grassHeight`, `rockHeight`
+Scripts utilisé `ProceduralGridGenerator` avec ScriptableObject `NoiseGenerator`.
+### Paramètres du ScriptableObject NoiseGenerator
+
+**Noise Settings**  
+- `noiseType` : type de bruit (ex : Perlin, Gradient, etc.)  
+- `frequency` : fréquence du bruit (ex : 0.01 → 0.1)  
+- `amplitude` : amplitude du bruit (ex : 0.5 → 1.5)  
+
+**Fractal Settings**  
+- `fractalType` : type de fractale (ex : FBm, Billow, etc.)  
+- `octaves` : nombre de couches fractales (1 → 5)  
+- `lacunarity` : écart entre les octaves (1 → 3)  
+- `persistence` : influence de chaque octave (0.5 → 1)  
+
+**Terrain Height Thresholds**  
+- `waterHeight` : seuil de l'eau (-1 → 1, ex: 0.2)  
+- `sandHeight` : seuil du sable (-1 → 1, ex: 0.3)  
+- `grassHeight` : seuil de l'herbe (-1 → 1, ex: 0.6)  
+- `rockHeight` : seuil des rochers (-1 → 1, ex: 1)
+
 
 Exemple :  
 <img src="Prj4_Jours1/Documentation/Noise/Exemple_Noise1.png" width="20%">  
