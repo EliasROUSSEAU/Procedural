@@ -165,12 +165,12 @@ Scripts utilisé `ProceduralGridGenerator` avec ScriptableObject `NoiseGenerator
 ### Paramètres du ScriptableObject NoiseGenerator
 
 **Noise Settings**  
-- `noiseType` : type de bruit (ex : Perlin, Gradient, etc.)  
+- `noiseType` : type de bruit (ex : Perlin, Gradient, ...)  
 - `frequency` : fréquence du bruit (ex : 0.01 → 0.1)  
 - `amplitude` : amplitude du bruit (ex : 0.5 → 1.5)  
 
 **Fractal Settings**  
-- `fractalType` : type de fractale (ex : FBm, Billow, etc.)  
+- `fractalType` : type de fractale (ex : FBm, Billow, ...)  
 - `octaves` : nombre de couches fractales (1 → 5)  
 - `lacunarity` : écart entre les octaves (1 → 3)  
 - `persistence` : influence de chaque octave (0.5 → 1)  
