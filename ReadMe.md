@@ -41,6 +41,7 @@ Sur Unity :
 | Scope : `com.cysharp.unitask`  
 
 Cette onglet apparaitra :
+<br><br>
 <img src="Image/UnitaskSetup.png" width="50%">
 
 <br><br>
@@ -53,6 +54,7 @@ Une fois appliqué, fermer la fenêtre et faire :
 - Name : `com.cysharp.unitask` | version : `2.5.10`  
 
 Ceci dans cette interface :
+<br><br>
 <img src="Image/AddUnitask.png" width="50%">
 
 
@@ -75,6 +77,7 @@ Maintenant le projet contient les éléments de génération procédural :
 - Noise
 
 Les scripts de génération procédural sont ici:
+<br><br>
 <img src="Image/ProjGP.png" width="50%">
 
 <br><br>
@@ -96,14 +99,14 @@ Les scripts de génération procédural sont ici:
 Allez sur la scène `GridGenerator`.  
 Sur le GameObject `ProceduralGridGenerator`, vérifier que la variable `GenerationMethod` à le ScriptableObject `Simple Room Placement` d'attaché.
 Pour changer d'algorithme de génération, changer le ScriptableObject attaché avec l'un des 4 du projet ou le votre :
-
+<br><br>
 <img src="Image/GPAlgo.png" width="50%">
 
 Si ce n'est pas le bon scriptableObject, le trouver dans:  
 `Assets > Components > ProceduralGeneration > 0_SimpleRoomPlacement > SimpleRoomPlacement`  
 Glisser/déposer dans l'inspector de `ProceduralGridGenerator` → `GenerationMethod`.  
 Il est également possible de sélectionner directement le ScriptableObject sans glisser déposer en appuiant sur le cercle à coté la zone :
-
+<br><br>
 <img src="Image/GPAlgoChoise.png" width="50%">
 
 **Étapes du ScriptableObject `Simple Room Placement.cs`**:  
@@ -123,9 +126,11 @@ Script utilisé `ProceduralGridGenerator` avec ScriptableObject `BSP2`.
 Libre à vous de tester les autres BSP.  
 
 Rappel sur `Binary Tree` :  
+<br>
 <img src="Image/BinaryTree.png" width="50%">
 
 **Étapes réalisé lors de la génération BSP:**  
+<br>
 <img src="Image/BSPState.png" width="50%">
 
 <br>
@@ -140,7 +145,7 @@ Scripts utilisé: `ProceduralGridGenerator` avec ScriptableObject `CellularAutom
 - `MaxSteps` : Nombre maximum d’itérations du Cellular Automata.  
 - `_noiseDensity` : Pourcentage de Cell Grass au départ.   
 - `_grassThreshold` : Nombre minimum de voisin Grass pour que une Cell devien Grass (0 → 8). 
-
+<br>
 <img src="Image/CelullarCellChange.png" width="50%">
 La case rouge devient une case jaunatre si elle a 5 voisins jaunatre ou plus.
 
@@ -243,7 +248,8 @@ Scripts utilisé `ProceduralGridGenerator` avec ScriptableObject `NoiseGenerator
 
 
 
-Exemple avec la seed 666 avec grid 200/200:  
+Exemple avec la seed 666 avec grid 200/200 : 
+<br><br>
 <img src="Image/NoiseMap.png" width="50%">
 <img src="Image/NoiseMapSettings.png" width="50%">
 
