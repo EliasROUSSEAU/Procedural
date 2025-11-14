@@ -1,10 +1,12 @@
-<img src="Prj4_Jours1/Documentation/Projet4_JeuProcedural.png" width="80%">
+<img src="Image/GPTitle.png" width="80%">
 
 ---
 
 **Elias ROUSSEAU**  
 > Gaming Campus GTech3 Groupe GameBoy - 2025-2026  
 > Semaine Théorique sur Unity - `Algorythme pour Jeu Procédurale`  
+
+<br>
 
 ---
 
@@ -16,13 +18,17 @@
 - [CellularAutomata](#cellularautomata)
 - [NoiseGenerator](#noisegenerator)
 
+<br>
+
 ---
 
 ### Mise en place et Initialisation
 
 Important sinon le projet ne fonctionnera pas !  
 Utilisation de **`UniTask`** :  
--> Guide d'installation : [**Lien UniTask OpenUPM**](https://openupm.com/packages/com.cysharp.unitask/#modal-manualinstallation)  
+-> Guide d'installation d' UniTask : [**Lien UniTask OpenUPM**](https://openupm.com/packages/com.cysharp.unitask/#modal-manualinstallation)  
+
+<br><br>
 
 **1ère Étape**  
 Sur Unity :  
@@ -34,9 +40,10 @@ Sur Unity :
 | URL   : `https://package.openupm.com`  
 | Scope : `com.cysharp.unitask`  
 
-<img src="Prj4_Jours1/Documentation/SetupUniTask_Unity_FullOnglet.png" width="50%">
+Cette onglet apparaitra :
+<img src="Image/UnitaskSetup.png" width="50%">
 
----
+<br><br>
 
 **2ème Étape**  
 Une fois appliqué, fermer la fenêtre et faire :  
@@ -45,10 +52,11 @@ Une fois appliqué, fermer la fenêtre et faire :
 - +  
 - Name : `com.cysharp.unitask` | version : `2.5.10`  
 
-<img src="Prj4_Jours1/Documentation/Unity_Package_Plus_Name.png" width="25%">
-<img src="Prj4_Jours1/Documentation/Unity_Package_Plus_Name_InputField.png" width="25%">
+Ceci dans cette interface :
+<img src="Image/AddUnitask.png" width="50%">
 
----
+
+<br><br>
 
 **3ème Étape** *(Non obligatoire, seulement pour recommencer avec une base basique)*  
 Télécharger le package découverte de UTKOWSKI Yona (intervenant) :  
@@ -56,7 +64,7 @@ Télécharger le package découverte de UTKOWSKI Yona (intervenant) :
 Nom du package : `ArchitectureProceduralGeneration.unitypackage`  
 Glisser le package dans la **Hierarchy** Unity, puis importer le tout.
 
----
+<br><br>
 
 **FIN INITIALISATION**
 
@@ -66,20 +74,12 @@ Maintenant le projet contient les éléments de génération procédural :
 - Cellular Automata  
 - Noise
 
+Les scripts de génération procédural sont ici:
+<img src="Image/ProjGP.png" width="50%">
 
----
+<br><br>
 
-**FIN INITIALISATION**
-
-Ici, le projet contient plus d'éléments que le simple package de l'étape 3:  
-- SimpleRoomPlacement  
-- BSP  
-- Cellular Automata  
-- Noise  
-
----
-
-### Informations Utiles
+### Informations Complémentaires
 
 **SEED**:  
 - Utilisation de `RandomService()` avec la Seed pour contrôler l'aléatoire. 
@@ -87,25 +87,33 @@ Ici, le projet contient plus d'éléments que le simple package de l'étape 3:
 - Le changement de la Seed entrainera un résultat différent. L'utilisation d'une même Seed, on retrouvera le même résultat.  
 - Toujours utilisé la même méthode de génération pour obtenir les mêmes générations.
 
+<br>
+
 ---
 
 ## SimpleRoomPlacement
 
-A l'ouverture du projet Unity, utiliser la scène `GridGenerator`.  
-Sur le GameObject `ProceduralGridGenerator`, vérifier que la variable `GenerationMethod` utilise le scriptableObject `Simple Room Placement`.
+Allez sur la scène `GridGenerator`.  
+Sur le GameObject `ProceduralGridGenerator`, vérifier que la variable `GenerationMethod` à le ScriptableObject `Simple Room Placement` d'attaché.
+Pour changer d'algorithme de génération, changer le ScriptableObject attaché avec l'un des 4 du projet ou le votre :
 
-<img src="Prj4_Jours1/Documentation/ProceduralGridGenerator_ScriptableObject_SimpleRoom.png" width="30%">
+<img src="Image/GPAlgo.png" width="50%">
 
 Si ce n'est pas le bon scriptableObject, le trouver dans:  
 `Assets > Components > ProceduralGeneration > 0_SimpleRoomPlacement > SimpleRoomPlacement`  
 Glisser/déposer dans l'inspector de `ProceduralGridGenerator` → `GenerationMethod`.  
+Il est également possible de sélectionner directement le ScriptableObject sans glisser déposer en appuiant sur le cercle à coté la zone :
+
+<img src="Image/GPAlgoChoise.png" width="50%">
 
 **Étapes du ScriptableObject `Simple Room Placement.cs`**:  
-1. Créer une `Room` de taille aléatoire (`minSizeX/Y` → `maxSizeX/Y`).  
-2. Positionner la `Room` aléatoirement dans la grille.  
-3. Vérifier si la `Room` chevauche une room déjà en place.  
+1. Créer une `Room` de taille aléatoire entre (`minSizeX/Y` et `maxSizeX/Y`).  
+2. Place la `Room` aléatoirement dans la grille.  
+3. Vérifier si la `Room` chevauche une `Room` déjà en place.  
 4. Répéter les étapes 1 à 3 jusqu'à atteindre `MaxRooms` ou `MaxSteps`.  
-5. Relier les rooms entre elles via le centre, en formant des couloirs "L" suivant l'ordre d'instanciation.
+5. Relier les rooms entre elles via le centre, en créant des couloirs horizontalement et verticalement en suivant l'ordre d'instanciation.
+
+<br>
 
 ---
 
@@ -115,41 +123,34 @@ Script utilisé `ProceduralGridGenerator` avec ScriptableObject `BSP2`.
 Libre à vous de tester les autres BSP.  
 
 Rappel sur `Binary Tree` :  
-<img src="Prj4_Jours1/Documentation/Screen_BSP/BinaryTree.png" width="30%">
+<img src="Image/BinaryTree.png" width="50%">
 
-**Étapes BSP (exemple):**  
-1. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_0Split.png" width="20%"> Création de la grille mère `Root`.  
-2. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_1Split.png" width="20%"> Création des `Sisters` (vertical/horizontal).  
-3. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_2Split.png" width="20%"> Création des autres Sisters.  
-4. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_3Split.png" width="20%"> Arrêt si découpe impossible ou steps max atteints.  
-5. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_BuildRoom.png" width="20%"> Création des Rooms.  
-6. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_BuildCorridor.png" width="20%"> Création des corridors "L".  
-7. <img src="Prj4_Jours1/Documentation/Screen_BSP/Feuille1_BuildFinal.png" width="20%"> Résultat final.
+**Étapes réalisé lors de la génération BSP:**  
+<img src="Image/BSPState.png" width="50%">
+
+<br>
 
 ---
 
 ## CellularAutomata
 
 Scripts utilisé: `ProceduralGridGenerator` avec ScriptableObject `CellularAutomata`.  
-### Paramètres du ScriptableObject
+### Paramètres du ScriptableObject CellularAutomata
 
-**Général**  
 - `MaxSteps` : Nombre maximum d’itérations du Cellular Automata.  
-
-**Initialisation**  
-- `_noiseDensity` : Pourcentage de Cell Grass au départ.  
-
-**Règles de transformation**  
+- `_noiseDensity` : Pourcentage de Cell Grass au départ.   
 - `_grassThreshold` : Nombre minimum de voisin Grass pour que une Cell devien Grass (0 → 8). 
 
-<img src="Prj4_Jours1/Documentation/Cell_Auto/CellularAutomaton.png" width="20%">  
-Exemple : la case rouge devient "Grass" si elle a ≥5 voisins "Grass".
+<img src="Image/CelullarCellChange.png" width="50%">
+La case rouge devient une case jaunatre si elle a 5 voisins jaunatre ou plus.
 
 **Étapes:**  
 1. Remplir la grille procéduralement avec les Cell Grass et Water selon `_noiseDensity`.  
 2. Création d'une grille selon `minGroundNeighbourCount`.  
 3. Remplacement des Cell si condition remplie.  
 4. Répéter le procèder jusqu' `MaxSteps`.
+
+<br>
 
 ---
 
@@ -170,15 +171,81 @@ Scripts utilisé `ProceduralGridGenerator` avec ScriptableObject `NoiseGenerator
 - `persistence` : influence de chaque octave (0.5 → 1)  
 
 **Terrain Height Thresholds**  
-- `waterHeight` : seuil de l'eau (-1 → 1, ex: 0.2)  
-- `sandHeight` : seuil du sable (-1 → 1, ex: 0.3)  
-- `grassHeight` : seuil de l'herbe (-1 → 1, ex: 0.6)  
-- `rockHeight` : seuil des rochers (-1 → 1, ex: 1)
+- `waterHeight` : seuil de l'eau (-1 → 1)  
+- `sandHeight` : seuil du sable (-1 → 1)  
+- `grassHeight` : seuil de l'herbe (-1 → 1)  
+- `rockHeight` : seuil des rochers (-1 → 1)
+
+### Noise Settings  
+- `noiseType` : type de bruit (ex : Perlin, Gradient, ...)  
+- `frequency` : fréquence du bruit (0.01 → 0.1)  
+- `amplitude` : amplitude du bruit (0.5 → 1.5)  
+
+### Fractal Settings  
+- `fractalType` : type de fractale (FBm, Billow, ...)  
+- `octaves` : nombre de couches fractales (1 → 5)  
+- `lacunarity` : écart entre les octaves (1 → 3)  
+- `persistence` : influence de chaque octave (0.5 → 1)  
+
+### Terrain Height Thresholds  
+- `waterHeight` : seuil de l'eau (-1 → 1)  
+- `sandHeight` : seuil du sable (-1 → 1)  
+- `grassHeight` : seuil de l’herbe (-1 → 1)  
+- `rockHeight` : seuil des rochers (-1 → 1)
+
+---
+### Éléments sur la map
+
+### Tree Settings  
+- `enableTrees` : active ou désactive la génération d’arbres  
+- `vegetationFrequency` : fréquence du bruit pour les arbres (0.001 → 0.5)  
+- `treeThreshold` : seuil du bruit pour autoriser un arbre (-1 → 1)  
+- `treeDensity` : densité d’arbres (0 → 1)  
+- `treeMinDistance` : distance minimale entre deux arbres (0 → 6)  
+- `treeTemplateNames` : noms des templates d’arbres  
+- `verboseTreeDebug` : active le debug des arbres  
+
+### Branches Settings  
+- `enableBranches` : active/désactive la génération de branches  
+- `branchFrequency` : fréquence du bruit pour les branches (0.001 → 0.5)  
+- `branchThreshold` : seuil du bruit pour les branches (-1 → 1)  
+- `branchDensity` : densité de branches (0 → 1)  
+- `branchMinDistance` : distance minimale entre branches (0 → 6)  
+- `branchMaxWaterDistance` : distance max entre une branche et l’eau (0 → 6)  
+- `branchTemplateNames` : noms des templates de branches  
+- `verboseBranchDebug` : debug pour les branches  
+
+### Gallais Settings  
+- `enableGallais` : active/désactive les Gallais  
+- `gallaiFrequency` : fréquence du bruit (0.001 → 0.5)  
+- `gallaiThreshold` : seuil du bruit (-1 → 1)  
+- `gallaiDensity` : densité (0 → 1)  
+- `gallaiMinDistance` : distance minimale entre Gallais (0 → 6)  
+- `gallaiMaxDistance` : distance maximale entre Gallais (0 → 6)  
+- `gallaiMinDistanceFromWater` : distance minimale depuis l’eau (0 → 8)  
+- `gallaiMaxDistanceFromWater` : distance maximale depuis l’eau (1 → 8)  
+- `gallaiSpawnAnywhere` : autorise le spawn peu importe l’environnement  
+- `gallaiTemplateNames` : templates utilisés  
+- `verboseGallaiDebug` : debug Gallais  
+
+### Autres paramètres  
+- `seed` : seed utilisée pour générer le monde (1337 par défaut)
+
+### Variables internes (debug / analyse)  
+*U utiles pour comprendre le comportement du générateur et débuger*  
+- `treesPlaced` : nombre d’arbres placés  
+- `branchesPlaced` : nombre de branches placées  
+- `gallaisPlaced` : nombre de Gallais placés  
+- `grassCells` : nombre de cellules d’herbe détectées  
+- `treeNoisePassed` : cellules validées par le bruit des arbres  
+- `treeDensityPassed` : cellules validées par la densité  
+- `treeOccupancyFailed` : placements invalidés par collision
 
 
-Exemple :  
-<img src="Prj4_Jours1/Documentation/Noise/Exemple_Noise1.png" width="20%">  
-<img src="Prj4_Jours1/Documentation/Noise/ConfigNoise_Exemple1.png" width="50%">  
+
+Exemple avec la seed 666 avec grid 200/200:  
+<img src="Image/NoiseMap.png" width="50%">
+<img src="Image/NoiseMapSettings.png" width="50%">
 
 **Génération de la grille avec le Noise:**  
 1. Initialiser le type de bruit.  
@@ -188,7 +255,11 @@ Exemple :
 5. Refaire pour toute la grille.  
 6. Personaliser tout les paramètres pour le rendu souhaité.
 
+<br>
+
 ---
 
 Remerciements:  
-Un merci à RUTKOWSKI Yona, intervenant de notre classe GTECH 3 pour son enseignement.
+- Merci à RUTKOWSKI Yona, intervenant de notre classe GTECH 3 pour son enseignement.
+- Cysharp pour l'utilisatoin UniTask
+- Auburn pour l'utilisation de FastNoiseLite
