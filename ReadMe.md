@@ -162,46 +162,31 @@ La case rouge devient une case jaunatre si elle a 5 voisins jaunatre ou plus.
 ## NoiseGenerator
 
 Scripts utilisé `ProceduralGridGenerator` avec ScriptableObject `NoiseGenerator`.
+Le NoiseGenerator utilise un bruit pour la génération. Ce bruit est ensuite retravaillé pour avoir un rendus exploitable.
 ### Paramètres du ScriptableObject NoiseGenerator
 
 **Noise Settings**  
-- `noiseType` : type de bruit (ex : Perlin, Gradient, ...)  
-- `frequency` : fréquence du bruit (ex : 0.01 → 0.1)  
-- `amplitude` : amplitude du bruit (ex : 0.5 → 1.5)  
+Définit le brui de base, donc détermine ma forme initial du terrain.
+- `noiseType` : type de bruit (ex : Perlin, Gradient, ...)  Style de rendu général
+- `frequency` : fréquence du bruit (ex : 0.01 → 0.1)  Fréqience faible -> grandes formes / élevé -> petit détail
+- `amplitude` : amplitude du bruit (ex : 0.5 → 1.5) Amplitude faible  -> très plat / élevé -> montagnes hautes, creux profonds
 
 **Fractal Settings**  
+Le fractal noise permet d'additionner plusieurs noise pour ajouter du détails, ce qui permet d'avoir un terrain plus ou moin réaliste.
 - `fractalType` : type de fractale (ex : FBm, Billow, ...)  
-- `octaves` : nombre de couches fractales (1 → 5)  
-- `lacunarity` : écart entre les octaves (1 → 3)  
-- `persistence` : influence de chaque octave (0.5 → 1)  
+- `octaves` : nombre de couches fractales (1 → 5)  Octave faible -> simple / élevé -> détaillé
+- `lacunarity` : écart entre les octaves (1 → 3)  Lacunarité faible -> octave de même taille / élevé -> plus sérée
+- `persistence` : influence de chaque octave (0.5 → 1)  Persistence faible -> couche suplémentaire plus faible / éleve -> même amplitude que la précédente
 
 **Terrain Height Thresholds**  
+Utilisation de la height map pour la hauteur des éléments.
 - `waterHeight` : seuil de l'eau (-1 → 1)  
 - `sandHeight` : seuil du sable (-1 → 1)  
 - `grassHeight` : seuil de l'herbe (-1 → 1)  
 - `rockHeight` : seuil des rochers (-1 → 1)
-
-### Noise Settings  
-- `noiseType` : type de bruit (ex : Perlin, Gradient, ...)  
-- `frequency` : fréquence du bruit (0.01 → 0.1)  
-- `amplitude` : amplitude du bruit (0.5 → 1.5)  
-
-### Fractal Settings  
-- `fractalType` : type de fractale (FBm, Billow, ...)  
-- `octaves` : nombre de couches fractales (1 → 5)  
-- `lacunarity` : écart entre les octaves (1 → 3)  
-- `persistence` : influence de chaque octave (0.5 → 1)  
-
-### Terrain Height Thresholds  
-- `waterHeight` : seuil de l'eau (-1 → 1)  
-- `sandHeight` : seuil du sable (-1 → 1)  
-- `grassHeight` : seuil de l’herbe (-1 → 1)  
-- `rockHeight` : seuil des rochers (-1 → 1)
-
 ---
-### Éléments sur la map
-
-### Tree Settings  
+### Tree Settings
+Ces paramétres sont similaires aux autres éléments sur la map.
 - `enableTrees` : active ou désactive la génération d’arbres  
 - `vegetationFrequency` : fréquence du bruit pour les arbres (0.001 → 0.5)  
 - `treeThreshold` : seuil du bruit pour autoriser un arbre (-1 → 1)  
@@ -210,34 +195,11 @@ Scripts utilisé `ProceduralGridGenerator` avec ScriptableObject `NoiseGenerator
 - `treeTemplateNames` : noms des templates d’arbres  
 - `verboseTreeDebug` : active le debug des arbres  
 
-### Branches Settings  
-- `enableBranches` : active/désactive la génération de branches  
-- `branchFrequency` : fréquence du bruit pour les branches (0.001 → 0.5)  
-- `branchThreshold` : seuil du bruit pour les branches (-1 → 1)  
-- `branchDensity` : densité de branches (0 → 1)  
-- `branchMinDistance` : distance minimale entre branches (0 → 6)  
-- `branchMaxWaterDistance` : distance max entre une branche et l’eau (0 → 6)  
-- `branchTemplateNames` : noms des templates de branches  
-- `verboseBranchDebug` : debug pour les branches  
-
-### Gallais Settings  
-- `enableGallais` : active/désactive les Gallais  
-- `gallaiFrequency` : fréquence du bruit (0.001 → 0.5)  
-- `gallaiThreshold` : seuil du bruit (-1 → 1)  
-- `gallaiDensity` : densité (0 → 1)  
-- `gallaiMinDistance` : distance minimale entre Gallais (0 → 6)  
-- `gallaiMaxDistance` : distance maximale entre Gallais (0 → 6)  
-- `gallaiMinDistanceFromWater` : distance minimale depuis l’eau (0 → 8)  
-- `gallaiMaxDistanceFromWater` : distance maximale depuis l’eau (1 → 8)  
-- `gallaiSpawnAnywhere` : autorise le spawn peu importe l’environnement  
-- `gallaiTemplateNames` : templates utilisés  
-- `verboseGallaiDebug` : debug Gallais  
-
 ### Autres paramètres  
 - `seed` : seed utilisée pour générer le monde (1337 par défaut)
 
 ### Variables internes (debug / analyse)  
-*U utiles pour comprendre le comportement du générateur et débuger*  
+*Utiles pour comprendre le comportement du générateur et débuger*  
 - `treesPlaced` : nombre d’arbres placés  
 - `branchesPlaced` : nombre de branches placées  
 - `gallaisPlaced` : nombre de Gallais placés  
